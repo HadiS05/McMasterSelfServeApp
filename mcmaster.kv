@@ -7,7 +7,7 @@ MyScreenManager:
     OrderDrinks:
     OrderDesserts:
     FinalMenu:
-
+    endMenu:
 <Layout>:
     canvas:
         Color:
@@ -185,9 +185,9 @@ MyScreenManager:
                     pos_hint:{'x': .14, 'top': .345}
                     size_hint:.07,.05
                     on_release:
-                        root.shawarmaLess()
+                        root.friesLess()
                 Label:
-                    id:shawarma_quantity
+                    id:fries_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -197,7 +197,7 @@ MyScreenManager:
                     pos_hint:{'x': .29, 'top': .345}
                     size_hint:.07,.05
                     on_release:
-                        root.shawarmaMore()
+                        root.friesMore()
                 Image:
                     source:"img/frieslogo.png"
                     pos_hint:{'x':.153,'top':.535}
@@ -206,9 +206,9 @@ MyScreenManager:
                     pos_hint:{'right': .7, 'top': .345}
                     size_hint:.07,.05
                     on_release:
-                        root.friesLess()
+                        root.saladLess()
                 Label:
-                    id:fries_quantity
+                    id:salad_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -218,7 +218,7 @@ MyScreenManager:
                     pos_hint:{'right': .85, 'top': .345}
                     size_hint:.07,.05
                     on_release:
-                        root.friesMore()
+                        root.saladMore()
                 Image:
                     source:"img/saladlogo.png"
                     pos_hint:{'x':.63,'top':.535}
@@ -227,9 +227,9 @@ MyScreenManager:
                     pos_hint:{'right': .7, 'top': .623}
                     size_hint:.07,.05
                     on_release:
-                        root.saladLess()
+                        root.shawarmaLess()
                 Label:
-                    id:salad_quantity
+                    id:shawarma_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -239,12 +239,12 @@ MyScreenManager:
                     pos_hint:{'right': .85, 'top': .623}
                     size_hint:.07,.05
                     on_release:
-                        root.saladMore()
+                        root.shawarmaMore()
                 RoundedLabel:
                     id:totalplace
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
-                    text:"Total: $0.00"
+                    text:root.manager.subtotalprice
                     font_name:"LeagueSpartan-Bold"
                     size_hint:.4,.05
                 RoundedButton:
@@ -255,6 +255,7 @@ MyScreenManager:
                     on_release:
                         root.manager.transition = SlideTransition(direction="up")
                         app.root.current="finalu"
+                        root.finish()
 <OrderDrinks>:
     name:"orderdr"
     GridLayout:
@@ -336,11 +337,14 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'x': .14, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.waterLess()
                 Image:
                     source:"img/waterlogo.png"
                     pos_hint:{'x':.153,'top':.81}
                     size_hint:.2,.2
                 Label:
+                    id:water_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -349,6 +353,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'x': .29, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.waterMore()
                 Image:
                     source:"img/milkshakelogo.png"
                     pos_hint:{'x':.63,'top':.813}
@@ -356,7 +362,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'x': .14, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.ojLess()
                 Label:
+                    id:oj_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -365,6 +374,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'x': .29, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.ojMore()
                 Image:
                     source:"img/orangejuice.png"
                     pos_hint:{'x':.153,'top':.535}
@@ -372,7 +383,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'right': .7, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.sodaLess()
                 Label:
+                    id:soda_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -381,6 +395,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'right': .85, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.sodaMore()
                 Image:
                     source:"img/sodalogo.png"
                     pos_hint:{'x':.63,'top':.535}
@@ -388,7 +404,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'right': .7, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.milkshakeLess()
                 Label:
+                    id:milkshake_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -397,10 +416,13 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'right': .85, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.milkshakeMore()
                 RoundedLabel:
+                    id:totalplace
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
-                    text:"Total: $0.00"
+                    text:root.manager.subtotalprice
                     font_name:"LeagueSpartan-Bold"
                     size_hint:.4,.05
                 RoundedButton:
@@ -411,6 +433,7 @@ MyScreenManager:
                     on_release:
                         root.manager.transition = SlideTransition(direction="up")
                         app.root.current="finalu"
+                        root.finish()
 <OrderDesserts>:
     name:"orderde"
     GridLayout:
@@ -492,11 +515,14 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'x': .14, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.creamLess()
                 Image:
                     source:"img/creamlogo.png"
                     pos_hint:{'x':.153,'top':.81}
                     size_hint:.2,.2
                 Label:
+                    id:cream_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -505,6 +531,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'x': .29, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.creamMore()
                 Image:
                     source:"img/cakelogo.png"
                     pos_hint:{'x':.63,'top':.813}
@@ -512,7 +540,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'x': .14, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.cookiesLess()
                 Label:
+                    id:cookies_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -521,6 +552,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'x': .29, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.cookiesMore()
                 Image:
                     source:"img/cookieslogo.png"
                     pos_hint:{'x':.153,'top':.535}
@@ -528,7 +561,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'right': .7, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.macaronLess()
                 Label:
+                    id:macaron_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -537,6 +573,8 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'right': .85, 'top': .345}
                     size_hint:.07,.05
+                    on_release:
+                        root.macaronMore()
                 Image:
                     source:"img/macaronlogo.png"
                     pos_hint:{'x':.63,'top':.535}
@@ -544,7 +582,10 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'right': .7, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.cakeLess()
                 Label:
+                    id:cake_quantity
                     text:"0"
                     font_name:"LeagueSpartan-Bold"
                     font_size: root.height/30
@@ -553,10 +594,13 @@ MyScreenManager:
                 RoundButtonPlus:
                     pos_hint:{'right': .85, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.cakeMore()
                 RoundedLabel:
+                    id:totalplace
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
-                    text:"Total: $0.00"
+                    text:root.manager.subtotalprice
                     font_name:"LeagueSpartan-Bold"
                     size_hint:.4,.05
                 RoundedButton:
@@ -567,117 +611,174 @@ MyScreenManager:
                     on_release:
                         root.manager.transition = SlideTransition(direction="up")
                         app.root.current="finalu"
+                        root.finish()
 <FinalMenu>:
     name:"finalu"
-    BoxLayout:
-        orientation: 'vertical'
-        padding: 20
-        BoxLayout:
-            orientation: 'horizontal'
-            size_hint: 1, .1
-            Label:
-                markup: True
-                text:"[font=BRITANIC]McMaster Student Hub Self-Order"
-                color: 0,0,0,1
-                size_hint:0.5,.1
-                pos_hint:{'center_x': 0.5, 'top': 1}
+    GridLayout:
+        cols: 2
+        size:root.width, root.height
         BoxLayout:
             orientation: 'vertical'
-            pos: self.pos
-            size: self.size
+            size_hint: .35,1
             FloatLayout:
                 canvas:
                     Rectangle:
-                        pos: self.pos
                         size: self.size
-                        source:'img/receipt.png'
+                        pos: self.pos
+                        source:"img/finalmenuside.png"
                 Label:
                     markup: True
-                    text: "[font=TypeWriter]Subtotal:"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.25,'top': .7}
-                    size_hint: .3,None
-                    height: 50
+                    text:"[font=LeagueSpartan-Bold]Payment Method"
+                    size_hint: .1,.1
+                    pos_hint:{'center_x': 0.5, 'top': .8}
+                    font_size:root.height/25
+                ToggleButton:
+                    group:"payment"
+                    state:"down"
+                    size_hint: .5, .18
+                    pos_hint:{'center_x':.5,'top':.7}
+                    background_color:0,0,0,0
+                    background_normal:''
+                    canvas:
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            source: "img/creditlogo.png" if self.state == "normal" else "img/creditlogopressed.png"
+                            radius: [25]
+                ToggleButton:
+                    group:"payment"
+                    size_hint: .5, .18
+                    pos_hint:{'center_x':.5,'top':.51}
+                    background_color:0,0,0,0
+                    background_normal:''
+                    canvas:
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            source: "img/mealcardlogo.png" if self.state == "normal" else "img/mealcardlogopressed.png"
+                            radius: [25]
+                ToggleButton:
+                    group:"payment"
+                    size_hint: .5, .18
+                    pos_hint:{'center_x':.5,'top':.32}
+                    background_color:0,0,0,0
+                    background_normal:''
+                    canvas:
+                        RoundedRectangle:
+                            size: self.size
+                            pos: self.pos
+                            source: "img/cashlogo.png" if self.state == "normal" else "img/cashlogopressed.png"
+                            radius: [25]
+                RoundedButton:
+                    markup:True
+                    text:"[font=LeagueSpartan-Bold]Back"
+                    pos_hint:{'center_x':0.5, 'y': 0.03}
+                    size_hint:.5,.05
+                    on_release:
+                        root.manager.transition = SlideTransition(direction="down")
+                        app.root.current="orderm"
+        BoxLayout:
+            orientation: 'vertical'
+            size_hint: .65, 1
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        size: self.size
+                        pos: self.pos
+                        source:"img/finalmenuorder.png"
+                Label:
+                    markup: True
+                    text:"[font=LeagueSpartan-Bold]Finish Order"
+                    size_hint: .1,.1
+                    font_size: root.height/10
+                    pos_hint:{'center_x':0.5,'top':.95}
+                Label:
+                    markup: True
+                    text:"[font=AnonymousPro-Bold]Subtotal:"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.3,'top': .75}
+                    font_size: root.height/20
                     color: 0,0,0,1
-
                 Label:
-                    id:subtotal
                     markup: True
-                    text: "0.00"
-                    font_name: "TypeWriter"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.35,'top': .7}
-                    size_hint: .3,None
-                    height: 50
+                    text:root.manager.subtotal
+                    font_name: "AnonymousPro-Bold"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.65,'top': .75}
+                    font_size: root.height/20
                     color: 0,0,0,1
                 Label:
                     markup: True
-                    text: "[font=TypeWriter]Total Tax:"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.25, 'top': .6}
-                    size_hint: .3,None
-                    height: 50
-                    color: 0,0,0,1
-                Label:
-                    id:tax
-                    markup: True
-                    text: "$0.00"
-                    font_name: "TypeWriter"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.35,'top': .6}
-                    size_hint: .3,None
-                    height: 50
+                    text:"[font=AnonymousPro-Bold]Tax:"
+                    size_hint:.1,.1
+                    pos_hint:{'right': 0.5,'top': .65}
+                    font_size: root.height/20
                     color: 0,0,0,1
                 Label:
                     markup: True
-                    text: "[font=TypeWriter]Total:"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.25, 'top': .5}
-                    size_hint: .3,None
-                    height: 50
+                    text:root.manager.taxtotal
+                    font_name: "AnonymousPro-Bold"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.65,'top': .65}
+                    font_size: root.height/20
                     color: 0,0,0,1
                 Label:
-                    id:total
                     markup: True
-                    text: "$0.00"
-                    font_name: "TypeWriter"
-                    font_size: root.height/22
-                    pos_hint:{'center_x': 0.35,'top': .5}
-                    size_hint: .3,None
-                    height: 50
+                    text:"[font=AnonymousPro-Bold]Total:"
+                    size_hint:.1,.1
+                    pos_hint:{'right': 0.46,'top': .55}
+                    font_size: root.height/20
+                    color: 0,0,0,1
+                Label:
+                    markup: True
+                    text:root.manager.total
+                    font_name: "AnonymousPro-Bold"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.65,'top': .55}
+                    font_size: root.height/20
+                    color: 0,0,0,1
+                Label:
+                    markup: True
+                    text:"[font=AnonymousPro-Bold]Date:"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.2,'top': .4}
+                    font_size: root.height/35
+                    color: 0,0,0,1
+                Label:
+                    markup: True
+                    text:root.manager.date
+                    font_name: "AnonymousPro-Bold"
+                    size_hint:.1,.1
+                    pos_hint:{'x': 0.5,'top': .4}
+                    font_size: root.height/35
+                    color: 0,0,0,1
+                Label:
+                    markup: True
+                    text:"[font=AnonymousPro-Bold]Powered by Python and Kivy"
+                    size_hint:.1,.1
+                    pos_hint:{'center_x': 0.5,'top': .3}
+                    font_size: root.height/40
                     color: 0,0,0,1
                 RoundedButton:
-                    markup: True
-                    text:"[font=BRITANIC]Finish Order"
-                    pos_hint:{'center_x':0.5, 'top': .35}
-                    size_hint: .3, .1
+                    markup:True
+                    text:"[font=LeagueSpartan-Bold]Finish"
+                    pos_hint:{'center_x':0.5, 'y': 0.03}
+                    size_hint:.3,.05
                     on_release:
-                        root.finishBill()
-                Label:
-                    markup: True
-                    text: "[font=TypeWriter]Order Status:"
-                    font_size: root.height/24
-                    pos_hint:{'center_x': 0.4, 'top': .33}
-                    size_hint: .3, .3
-                    color: (0,0,0,1)
-                Label:
-                    id:status
-                    markup: True
-                    text: "Incomplete"
-                    font_name: "TypeWriter"
-                    font_size: root.height/24
-                    pos_hint:{'center_x': 0.6, 'top': .33}
-                    size_hint: .3, .3
-                    color: (0,154/255,59/255,0.8)
-        BoxLayout:
-            orientation: 'horizontal'
-            pos_hint:{'center_x':0.5}
-            size_hint: .3, .1
-            RoundedButton:
-                markup: True
-                size_hint: .3, .5
-                text: "[font=BRITANIC]Back"
-                pos_hint:{'center_x': 0.5}
-                on_release:
-                    app.root.current = "orderu"
-                    root.manager.transition.direction= "down"
+                        root.manager.transition = SlideTransition(direction="up")
+                        app.root.current="endm" if root.manager.total != "$0.00" else print("Your order is empty!")
+<endMenu>:
+    name:"endm"
+    FloatLayout:
+        size: root.width, root.height
+        canvas:
+            Rectangle:
+                size: self.size
+                pos: self.pos
+                source: "img/endScreen.png"
+        Label:
+            markup: True
+            text:"[font=Anton-Regular]Thank\nYou"
+            font_size: root.height/10
+            pos_hint:{'center_x': 0.5, 'top': 0.97}
+            halign: 'center'
