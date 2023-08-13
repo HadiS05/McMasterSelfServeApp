@@ -31,102 +31,7 @@ class MainMenu(Screen):
 
 # Containing all the functions for the buttons
 class OrderMenu(Screen):
-    def burgerMore(self):
-        quantity = int(self.ids.burger_quantity.text)+1
-        price = 5.00*quantity
-        self.ids.burger_quantity.text = f'{quantity}'
-        self.ids.burger_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_    
-    def burgerLess(self):
-        quantity = int(self.ids.burger_quantity.text) - 1 if(int(self.ids.burger_quantity.text) != 0) else 0
-        price = 5.00 * quantity
-        self.ids.burger_quantity.text = f'{quantity}'
-        self.ids.burger_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_
-    def pizzaMore(self):
-        quantity = int(self.ids.pizza_quantity.text) + 1
-        price = 3.50 * quantity
-        self.ids.pizza_quantity.text = f'{quantity}'
-        self.ids.pizza_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_
-    def pizzaLess(self):
-        quantity = int(self.ids.pizza_quantity.text) - 1 if (int(self.ids.pizza_quantity.text) != 0) else 0
-        price = 3.50 * quantity
-        self.ids.pizza_quantity.text = f'{quantity}'
-        self.ids.pizza_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_
-    def friesMore(self):
-        quantity = int(self.ids.fries_quantity.text) + 1
-        price = 4.00 * quantity
-        self.ids.fries_quantity.text = f'{quantity}'
-        self.ids.fries_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_
-    def friesLess(self):
-        quantity = int(self.ids.fries_quantity.text) - 1 if (int(self.ids.fries_quantity.text) != 0) else 0
-        price = 4.00 * quantity
-        self.ids.fries_quantity.text = f'{quantity}'
-        self.ids.fries_price.text = "$%.2f" % price
-        burger_price = float((self.ids.burger_price.text).replace("$", ""))
-        pizza_price = float((self.ids.pizza_price.text).replace("$", ""))
-        fries_price = float((self.ids.fries_price.text).replace("$", ""))
-        water_price = float((self.ids.water_price.text).replace("$", ""))
-        coffee_price = float((self.ids.coffee_price.text).replace("$", ""))
-        mango_price = float((self.ids.mango_price.text).replace("$", ""))
-        cream_price = float((self.ids.cream_price.text).replace("$", ""))
-        ccake_price = float((self.ids.ccake_price.text).replace("$", ""))
-        chcake_price = float((self.ids.chcake_price.text).replace("$", ""))
-        subtotal_ =  burger_price + pizza_price + fries_price + water_price + coffee_price + mango_price + cream_price + ccake_price + chcake_price
-        self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+
     def waterMore(self):
         quantity = int(self.ids.water_quantity.text) + 1
         price = 2.00 * quantity
@@ -338,7 +243,150 @@ class OrderMenu(Screen):
         self.manager.get_screen('finalu').ids.total.text = "$%.2f" % total_price
 
 class OrderMeals(Screen):
-    pass
+    def burgerMore(self):
+        quantity = int(self.ids.burger_quantity.text)+1
+        price = 5.00*quantity
+        self.ids.burger_quantity.text = f'{quantity}'
+        burger_price = price
+        shawarma_price = 10.00*int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50*int(self.ids.fries_quantity.text)
+        salad_price = 7.50*int(self.ids.salad_quantity.text)
+        # water_price = 3.50*int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00*int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20*int(self.ids.oj_quantity.text)
+        # soda_price = 2.00*int(self.ids.soda_quantity.text)
+        # cream_price = 4.50*int(self.ids.cream_quantity.text)
+        # cake_price = 6.30*int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50*int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20*int(self.ids.macaron_quantity.text)
+        # subtotal_ =  burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def burgerLess(self):
+        quantity = int(self.ids.burger_quantity.text) - 1 if(int(self.ids.burger_quantity.text) != 0) else 0
+        price = 5.00 * quantity
+        self.ids.burger_quantity.text = f'{quantity}'
+        burger_price = price
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def friesMore(self):
+        quantity = int(self.ids.fries_quantity.text) + 1
+        price = 5.50 * quantity
+        self.ids.fries_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def friesLess(self):
+        quantity = int(self.ids.fries_quantity.text) - 1 if (int(self.ids.fries_quantity.text) != 0) else 0
+        price = 5.50 * quantity
+        self.ids.fries_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def shawarmaMore(self):
+        quantity = int(self.ids.shawarma_quantity.text) + 1
+        price = 10.00 * quantity
+        self.ids.shawarma_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def shawarmaLess(self):
+        quantity = int(self.ids.shawarma_quantity.text) - 1 if (int(self.ids.shawarma_quantity.text) != 0) else 0
+        price = 10.00 * quantity
+        self.ids.shawarma_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def saladMore(self):
+        quantity = int(self.ids.salad_quantity.text) + 1
+        price = 7.50 * quantity
+        self.ids.salad_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
+    def saladLess(self):
+        quantity = int(self.ids.salad_quantity.text) - 1 if (int(self.ids.salad_quantity.text) != 0) else 0
+        price = 7.50 * quantity
+        self.ids.salad_quantity.text = f'{quantity}'
+        burger_price = 5.00 * int(self.ids.burger_quantity.text)
+        shawarma_price = 10.00 * int(self.ids.shawarma_quantity.text)
+        fries_price = 5.50 * int(self.ids.fries_quantity.text)
+        salad_price = 7.50 * int(self.ids.salad_quantity.text)
+        # water_price = 3.50 * int(self.ids.water_quantity.text)
+        # milkshake_price = 6.00 * int(self.ids.milkshake_quantity.text)
+        # oj_price = 5.20 * int(self.ids.oj_quantity.text)
+        # soda_price = 2.00 * int(self.ids.soda_quantity.text)
+        # cream_price = 4.50 * int(self.ids.cream_quantity.text)
+        # cake_price = 6.30 * int(self.ids.cake_quantity.text)
+        # cookies_price = 1.50 * int(self.ids.cookies_quantity.text)
+        # macaron_price = 5.20 * int(self.ids.macaron_quantity.text)
+        # subtotal_ = burger_price + fries_price + salad_price + water_price + milkshake_price + oj_price + soda_price + cream_price + cake_price + cookies_price + macaron_price
+        # self.ids.totalplace.text = "Total: $%.2f" % subtotal_
 class OrderDrinks(Screen):
     pass
 class OrderDesserts(Screen):

@@ -159,13 +159,89 @@ MyScreenManager:
                 RoundButton:
                     pos_hint:{'x': .14, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.burgerLess()
+                Image:
+                    source:"img/burgerlogo.png"
+                    pos_hint:{'x':.153,'top':.81}
+                    size_hint:.2,.2
                 Label:
-                    pos_hint:{'x': 2, 'top': .623}
-                    size_hint:.07,.05
+                    id:burger_quantity
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .623}
+                    size_hint:.1,.05
                 RoundButtonPlus:
                     pos_hint:{'x': .29, 'top': .623}
                     size_hint:.07,.05
+                    on_release:
+                        root.burgerMore()
+                Image:
+                    source:"img/shawarmalogo.png"
+                    pos_hint:{'x':.63,'top':.813}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .345}
+                    size_hint:.07,.05
+                    on_release:
+                        root.shawarmaLess()
+                Label:
+                    id:shawarma_quantity
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .345}
+                    size_hint:.07,.05
+                    on_release:
+                        root.shawarmaMore()
+                Image:
+                    source:"img/frieslogo.png"
+                    pos_hint:{'x':.153,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .345}
+                    size_hint:.07,.05
+                    on_release:
+                        root.friesLess()
+                Label:
+                    id:fries_quantity
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .345}
+                    size_hint:.07,.05
+                    on_release:
+                        root.friesMore()
+                Image:
+                    source:"img/saladlogo.png"
+                    pos_hint:{'x':.63,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .623}
+                    size_hint:.07,.05
+                    on_release:
+                        root.saladLess()
+                Label:
+                    id:salad_quantity
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .623}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .623}
+                    size_hint:.07,.05
+                    on_release:
+                        root.saladMore()
                 RoundedLabel:
+                    id:totalplace
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
                     text:"Total: $0.00"
@@ -257,6 +333,70 @@ MyScreenManager:
                     text:"[font=LeagueSpartan-Bold]Drinks"
                     size_hint:.1,.1
                     font_size: root.height/16
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .623}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/waterlogo.png"
+                    pos_hint:{'x':.153,'top':.81}
+                    size_hint:.2,.2
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .623}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .623}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/milkshakelogo.png"
+                    pos_hint:{'x':.63,'top':.813}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .345}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .345}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/orangejuice.png"
+                    pos_hint:{'x':.153,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .345}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .345}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/sodalogo.png"
+                    pos_hint:{'x':.63,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .623}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .623}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .623}
+                    size_hint:.07,.05
                 RoundedLabel:
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
@@ -349,6 +489,70 @@ MyScreenManager:
                     text:"[font=LeagueSpartan-Bold]Desserts"
                     size_hint:.1,.1
                     font_size: root.height/16
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .623}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/creamlogo.png"
+                    pos_hint:{'x':.153,'top':.81}
+                    size_hint:.2,.2
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .623}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .623}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/cakelogo.png"
+                    pos_hint:{'x':.63,'top':.813}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .345}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'x': .2, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .345}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/cookieslogo.png"
+                    pos_hint:{'x':.153,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .345}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .345}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .345}
+                    size_hint:.07,.05
+                Image:
+                    source:"img/macaronlogo.png"
+                    pos_hint:{'x':.63,'top':.535}
+                    size_hint:.2,.2
+                RoundButton:
+                    pos_hint:{'right': .7, 'top': .623}
+                    size_hint:.07,.05
+                Label:
+                    text:"0"
+                    font_name:"LeagueSpartan-Bold"
+                    font_size: root.height/30
+                    pos_hint:{'right': .79, 'top': .623}
+                    size_hint:.1,.05
+                RoundButtonPlus:
+                    pos_hint:{'right': .85, 'top': .623}
+                    size_hint:.07,.05
                 RoundedLabel:
                     markup: True
                     pos_hint:{'x': .1, 'top': .11}
