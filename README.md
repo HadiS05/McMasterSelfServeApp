@@ -1,5 +1,5 @@
 # McMasterSelfServeApp
-##By: Hadi Shaheryar##
+## By: Hadi Shaheryar ##
 This is app is a simple GUI program that shows how a self-order kiosk may look for McMaster.
 It displays subtotal, tax, total and quantity information.
 The program is made fully from python and utilizes the Kivy framework for portability to different devices.
