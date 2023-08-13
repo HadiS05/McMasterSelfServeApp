@@ -1,7 +1,11 @@
 #File name: mac.kv
+#:import NoTransition kivy.uix.screenmanager.NoTransition
+#:import SlideTransition kivy.uix.screenmanager.SlideTransition
 MyScreenManager:
     MainMenu:
-    OrderMenu:
+    OrderMeals:
+    OrderDrinks:
+    OrderDesserts:
     FinalMenu:
 
 <Layout>:
@@ -16,12 +20,18 @@ MyScreenManager:
     background_color: 0,0,0,0
     background_normal: ''
     canvas.before:
-        Color:
-            rgba:(162/255,0/255,26/255,.86) if self.state=='normal' else (244/255,232/255,234/255,0.86)
         RoundedRectangle:
             pos: self.pos
             size: self.size
-            radius: [25]
+            source: "img/buttonlogo.png" if self.state == "normal" else 'img/buttonlogopressed.png'
+<RoundedLabel@Label>:
+    background_color: 0,0,0,0
+    background_normal: ''
+    canvas.before:
+        RoundedRectangle:
+            pos: self.pos
+            size: self.size
+            source:"img/buttonlogo.png"
 <RoundButton@Button>:
     background_color: 0,0,0,0
     background_normal: ''
@@ -30,7 +40,6 @@ MyScreenManager:
             pos: self.pos
             size: self.size
             source: 'img/minus.png' if self.state == "normal" else 'img/minus_pressed.png'
-            radius: [400,]
 <RoundButtonPlus@Button>:
     background_color: 0,0,0,0
     background_normal: ''
@@ -42,500 +51,318 @@ MyScreenManager:
             radius: [400,]
 <MainMenu>:
     name:"mainu"
-    BoxLayout:
+    FloatLayout:
+        canvas:
+            Rectangle:
+                pos: self.pos
+                size: self.size
+                source: "img/mainbg.png"
         orientation: 'vertical'
         size: root.width, root.height
-        spacing: 5
-        padding: 10
+        spacing: 0
+        padding: 0
         Label:
             markup: True
-            text: "[font=BRITANIC]Welcome to McMaster\nStudent Hub"
-            pos_hint: {'center_x':0.5}
+            text: "[font=Anton-Regular]McMaster Self-Serve Kiosk"
+            pos_hint: {'center_x':0.5, 'top': .9}
             halign: 'center'
             font_size: root.height/20
-            color: 0,0,0,1
-            line_height: 1.5
+            color: 1,1,1,1
             size_hint: .2,.1
-        Image:
-            source:'img/maclogo.png'
-            pos_hint:{'center_x':0.5}
-            size_hint: .3,.3
         RoundedButton:
             markup: True
-            text: "[font=BRITANIC]Order Here"
-            size_hint: 0.3, 0.05
-            pos_hint: {'center_x':0.5}
+            text: "[font=LeagueSpartan-Bold]Order Here"
+            size_hint: 0.5, 0.1
+            pos_hint: {'center_x':0.5, 'y': 0.15}
+            font_size: root.height/20
             on_release:
-                app.root.current = "orderu"
+                app.root.current = "orderm"
                 root.manager.transition.direction= "up"
-<OrderMenu>:
-    name:"orderu"
-    BoxLayout:
-        orientation:'vertical'
-        padding: 20
+<OrderMeals>:
+    name:"orderm"
+    GridLayout:
+        size: root.width, root.height
+        cols:2
         BoxLayout:
-            orientation: 'vertical'
-            size_hint: 1, .1
-            Label:
-                markup: True
-                text:"[font=BRITANIC]McMaster Student Hub Order Menu"
-                color: 0,0,0,1
-                size_hint:0.5,.1
-                pos_hint:{'center_x': 0.5, 'top': 1}
-        TabbedPanel:
-            do_default_tab: False
-            background_color: 1,1,1,1
-            tab_height: 100
-            TabbedPanelItem:
-                background_normal:'img/mealslogo.png'
-                background_down:'img/mealslogo_down.png'
-                BoxLayout:
-                    orientation: 'vertical'
-                    padding: 20
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/mealslogo.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                            keep_ratio: True
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Chicken Burger"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:burger_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.burgerLess()
-                        Label:
-                            id:burger_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.burgerMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/pizza.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Cheese Pizza (1 slice)"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:pizza_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.pizzaLess()
-                        Label:
-                            id:pizza_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.pizzaMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/fries.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Fries (Small)"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:fries_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.friesLess()
-                        Label:
-                            id:fries_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.friesMore()
-            TabbedPanelItem:
-                background_normal:'img/drinkslogo.png'
-                background_down:'img/drinkslogo_down.png'
-                BoxLayout:
-                    orientation: 'vertical'
-                    padding: 20
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/water.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                            keep_ratio: True
-                            allow_stretch: True
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Water"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:water_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.waterLess()
-                        Label:
-                            id:water_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.waterMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/coffee.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Coffee"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:coffee_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.coffeeLess()
-                        Label:
-                            id:coffee_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.coffeeMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/mango.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Mango Milkshake"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:mango_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.mangoLess()
-                        Label:
-                            id:mango_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.mangoMore()
-            TabbedPanelItem:
-                background_normal:'img/dessert.png'
-                background_down:'img/dessert_down.png'
-                BoxLayout:
-                    orientation: 'vertical'
-                    padding: 20
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/dessert.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                            keep_ratio: True
-                            allow_stretch: True
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Ice Cream"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:cream_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.creamLess()
-                        Label:
-                            id:cream_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.creamMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/cupcake.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Cupcake"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:ccake_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.ccakeLess()
-                        Label:
-                            id:ccake_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.ccakeMore()
-                    BoxLayout:
-                        orientation: 'horizontal'
-                        size_hint: 1, None
-                        height: 100
-                        Image:
-                            source: 'img/cheesecake.png'
-                            pos_hint:{'x': 0}
-                            size_hint:.05,.5
-                        Label:
-                            markup: True
-                            text:"[font=BRITANIC]Cheesecake"
-                            font_size: root.width/30
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        Label:
-                            id:chcake_price
-                            markup: True
-                            text:"$0.00"
-                            font_name:"BRITANIC"
-                            font_size: root.width/25
-                            color: 0,0,0,1
-                            size_hint: .1,.5
-                            pos_hint:{'x': 0}
-                        RoundButton:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.chcakeLess()
-                        Label:
-                            id:chcake_quantity
-                            markup: True
-                            text: "0"
-                            font_name:"BRITANIC"
-                            font_size: root.height/20
-                            color: 0,0,0,1
-                            size_hint: .02,.02
-                            pos_hint:{'top': .25}
-                        RoundButtonPlus:
-                            size_hint: None, None
-                            size: 50, 50
-                            pos_hint:{'top': .5}
-                            on_release:
-                                root.chcakeMore()
+            orientation:'vertical'
+            size_hint: .25,1
+            FloatLayout:
+                size_hint: 1,1
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: "img/orderbgside.png"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.81}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/mealslogo.png' if root.manager.current != "orderm" else 'img/mealslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderm"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.61}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/drinkslogo.png' if self.state == "normal" else 'img/drinkslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderdr"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.41}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/dessert.png' if self.state == "normal" else 'img/dessert_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderde"
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.9,.05
+                    pos_hint:{'center_x':0.5,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Back"
+                    on_release:
+                        root.manager.transition = SlideTransition()
+                        app.root.current="mainu"
+                        root.manager.transition.direction="down"
         BoxLayout:
-            orientation: 'horizontal'
-            size_hint: 1, None
-            height: 200
-            RoundedButton:
-                markup: True
-                text: "[font=BRITANIC]Back"
-                size_hint: 0.2, .2
-                pos_hint: {'x': 0}
-                on_release:
-                    app.root.current = "mainu"
-                    root.manager.transition.direction="down"
-            RoundedButton:
-                markup: True
-                text: "[font=BRITANIC]Finish Order"
-                size_hint: 0.4, 0.2
-                pos_hint: {'right': 1}
-                on_release:
-                    app.root.current = "finalu"
-                    root.manager.transition.direction="up"
-                    root.finalBill()
-
+            orientation:'vertical'
+            size_hint: .75,1
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source:"img/orderbgmenu.png"
+                Label:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .95}
+                    text:"[font=LeagueSpartan-Bold]Meals"
+                    size_hint:.1,.1
+                    font_size: root.height/16
+                RoundButton:
+                    pos_hint:{'x': .14, 'top': .623}
+                    size_hint:.07,.05
+                Label:
+                    pos_hint:{'x': 2, 'top': .623}
+                    size_hint:.07,.05
+                RoundButtonPlus:
+                    pos_hint:{'x': .29, 'top': .623}
+                    size_hint:.07,.05
+                RoundedLabel:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .11}
+                    text:"Total: $0.00"
+                    font_name:"LeagueSpartan-Bold"
+                    size_hint:.4,.05
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.3,.05
+                    pos_hint:{'right':0.88,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Finish Order"
+                    on_release:
+                        root.manager.transition = SlideTransition(direction="up")
+                        app.root.current="finalu"
+<OrderDrinks>:
+    name:"orderdr"
+    GridLayout:
+        size: root.width, root.height
+        cols:2
+        BoxLayout:
+            orientation:'vertical'
+            size_hint: .25,1
+            FloatLayout:
+                size_hint: 1,1
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: "img/orderbgside.png"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.81}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/mealslogo.png' if self.state == "normal" else 'img/mealslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderm"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.61}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/drinkslogo.png' if root.manager.current != "orderdr" else 'img/drinkslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderdr"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.41}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/dessert.png' if self.state == "normal" else 'img/dessert_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderde"
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.9,.05
+                    pos_hint:{'center_x':0.5,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Back"
+                    on_release:
+                        root.manager.transition = SlideTransition()
+                        app.root.current="mainu"
+                        root.manager.transition.direction="down"
+        BoxLayout:
+            orientation:'vertical'
+            size_hint: .75,1
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source:"img/orderbgmenu.png"
+                Label:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .95}
+                    text:"[font=LeagueSpartan-Bold]Drinks"
+                    size_hint:.1,.1
+                    font_size: root.height/16
+                RoundedLabel:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .11}
+                    text:"Total: $0.00"
+                    font_name:"LeagueSpartan-Bold"
+                    size_hint:.4,.05
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.3,.05
+                    pos_hint:{'right':0.88,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Finish Order"
+                    on_release:
+                        root.manager.transition = SlideTransition(direction="up")
+                        app.root.current="finalu"
+<OrderDesserts>:
+    name:"orderde"
+    GridLayout:
+        size: root.width, root.height
+        cols:2
+        BoxLayout:
+            orientation:'vertical'
+            size_hint: .25,1
+            FloatLayout:
+                size_hint: 1,1
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source: "img/orderbgside.png"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.81}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/mealslogo.png' if self.state == "normal" else 'img/mealslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderm"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.61}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/drinkslogo.png' if self.state == "normal" else 'img/drinkslogo_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderdr"
+                Button:
+                    size_hint: 1,.2
+                    pos_hint:{'top':0.41}
+                    background_color: 0,0,0,0
+                    background_normal: ''
+                    canvas.before:
+                        Rectangle:
+                            pos: self.pos
+                            size: self.size
+                            source: 'img/dessert.png' if root.manager.current != "orderde" else 'img/dessert_down.png'
+                    on_release:
+                        root.manager.transition = NoTransition()
+                        app.root.current="orderde"
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.9,.05
+                    pos_hint:{'center_x':0.5,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Back"
+                    on_release:
+                        root.manager.transition = SlideTransition()
+                        app.root.current="mainu"
+                        root.manager.transition.direction="down"
+        BoxLayout:
+            orientation:'vertical'
+            size_hint: .75,1
+            FloatLayout:
+                canvas:
+                    Rectangle:
+                        pos: self.pos
+                        size: self.size
+                        source:"img/orderbgmenu.png"
+                Label:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .95}
+                    text:"[font=LeagueSpartan-Bold]Desserts"
+                    size_hint:.1,.1
+                    font_size: root.height/16
+                RoundedLabel:
+                    markup: True
+                    pos_hint:{'x': .1, 'top': .11}
+                    text:"Total: $0.00"
+                    font_name:"LeagueSpartan-Bold"
+                    size_hint:.4,.05
+                RoundedButton:
+                    markup: True
+                    size_hint: 0.3,.05
+                    pos_hint:{'right':0.88,'top':0.11}
+                    text:"[font=LeagueSpartan-Bold]Finish Order"
+                    on_release:
+                        root.manager.transition = SlideTransition(direction="up")
+                        app.root.current="finalu"
 <FinalMenu>:
     name:"finalu"
     BoxLayout:
