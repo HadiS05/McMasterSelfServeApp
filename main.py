@@ -12,6 +12,8 @@ from kivy.lang import Builder
 from kivy.uix.button import Label
 from kivy.app import App
 from kivy.uix.floatlayout import FloatLayout
+from kivy.uix.image import Image
+from kivy.uix.popup import Popup
 from kivy.uix.screenmanager import ScreenManager, Screen
 from kivy.uix.widget import Widget
 from kivy.properties import StringProperty

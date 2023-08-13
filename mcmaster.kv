@@ -1,6 +1,7 @@
 #File name: mac.kv
 #:import NoTransition kivy.uix.screenmanager.NoTransition
 #:import SlideTransition kivy.uix.screenmanager.SlideTransition
+#:import Factory kivy.factory.Factory
 MyScreenManager:
     MainMenu:
     OrderMeals:
@@ -49,6 +50,16 @@ MyScreenManager:
             size: self.size
             source: 'img/plus.png' if self.state == "normal" else 'img/plus_pressed.png'
             radius: [400,]
+<MenuPopUp@Popup>
+    title: "Menu"
+    size_hint: None,None
+    size: 600,500
+    canvas:
+        Rectangle:
+            size: self.size
+            pos: self.pos
+            source:"img/menu.png"
+
 <MainMenu>:
     name:"mainu"
     FloatLayout:
@@ -76,6 +87,7 @@ MyScreenManager:
             pos_hint: {'center_x':0.5, 'y': 0.15}
             font_size: root.height/20
             on_release:
+                Factory.MenuPopUp().open()
                 app.root.current = "orderm"
                 root.manager.transition.direction= "up"
 <OrderMeals>:
