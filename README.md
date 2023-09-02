@@ -13,3 +13,5 @@ The program is pretty self explanatory but there are some highlighting features.
 4. Credit card is the default method for payment selected by the program, but you have free will to choose between credit card, meal card and cash.
 5. Once the payment screen is validated, the program will move on to the final screen and then terminate in 2 seconds.
 6. This is just a demonstration so no payment information is being asked and the order isn't sent to any clerk for handling.
+
+Video preview: https://youtu.be/lgKO-kKgL7A
